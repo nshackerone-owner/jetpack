@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.2.4] - 2023-08-28
 ### Changed
 - Updated package dependencies. [#32605]
+- Rely on WordPress HTML API to parse HTML instead of Regex Patterns. [#43743]
 
 ## [0.2.3] - 2023-06-06
 ### Fixed

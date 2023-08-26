@@ -262,7 +262,10 @@ class WP_Test_Image_CDN extends Image_CDN_Attachment_Test_Case {
 		};
 		add_filter( 'jetpack_photon_post_image_args', $args_reset_callback, 10, 0 );
 
-		$this->assertEquals( trim( $expected ), trim( Image_CDN::instance()->filter_the_content( $sample_html ) ) );
+		if ( trim( $expected ) !== trim( Image_CDN::instance()->filter_the_content( $sample_html ) ) ) {
+			echo "\nExpected:\n" . trim( $expected ) . "\n\nActual:\n" . trim( Image_CDN::instance()->filter_the_content( $sample_html ) ) . "\n";
+		}
+		$this->assertXmlStringEqualsXmlString( trim( $expected ), trim( Image_CDN::instance()->filter_the_content( $sample_html ) ) );
 
 		remove_filter( 'jetpack_photon_post_image_args', $args_reset_callback );
 	}
