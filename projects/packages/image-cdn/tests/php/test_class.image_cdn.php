@@ -179,6 +179,51 @@ class WP_Test_Image_CDN extends Image_CDN_Attachment_Test_Case {
 	}
 
 	/**
+	 * Parse an HTML markup fragment.
+	 *
+	 * Copied from Core.
+	 *
+	 * @param string $markup Markup.
+	 * @return DOMElement Body element wrapping supplied markup fragment.
+	 */
+	protected function parse_markup_fragment( $markup ) {
+		$dom = new DOMDocument();
+		$dom->loadHTML(
+			"<!DOCTYPE html><html><head><meta charset=utf8></head><body>{$markup}</body></html>"
+		);
+
+		/** @var DOMElement $body */
+		$body = $dom->getElementsByTagName( 'body' )->item( 0 );
+
+		// Trim whitespace nodes added before/after which can be added when parsing.
+		// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+		foreach ( array( $body->firstChild, $body->lastChild ) as $node ) {
+			if ( $node instanceof DOMText && '' === trim( $node->data ) ) {
+				$body->removeChild( $node );
+			}
+		}
+
+		return $body;
+	}
+
+	/**
+	 * Assert markup is equal.
+	 *
+	 * Copied from Core.
+	 *
+	 * @param string $expected Expected markup.
+	 * @param string $actual   Actual markup.
+	 * @param string $message  Message.
+	 */
+	protected function assertEqualMarkup( $expected, $actual, $message = '' ) {
+		$this->assertEquals(
+			$this->parse_markup_fragment( $expected ),
+			$this->parse_markup_fragment( $actual ),
+			$message
+		);
+	}
+
+	/**
 	 * Tests that Image CDN creates an Image CDN instance.
 	 *
 	 * @author scotchfield
@@ -262,10 +307,7 @@ class WP_Test_Image_CDN extends Image_CDN_Attachment_Test_Case {
 		};
 		add_filter( 'jetpack_photon_post_image_args', $args_reset_callback, 10, 0 );
 
-		if ( trim( $expected ) !== trim( Image_CDN::instance()->filter_the_content( $sample_html ) ) ) {
-			echo "\nExpected:\n" . trim( $expected ) . "\n\nActual:\n" . trim( Image_CDN::instance()->filter_the_content( $sample_html ) ) . "\n";
-		}
-		$this->assertXmlStringEqualsXmlString( trim( $expected ), trim( Image_CDN::instance()->filter_the_content( $sample_html ) ) );
+		$this->assertEqualMarkup( trim( $expected ), trim( Image_CDN::instance()->filter_the_content( $sample_html ) ) );
 
 		remove_filter( 'jetpack_photon_post_image_args', $args_reset_callback );
 	}
