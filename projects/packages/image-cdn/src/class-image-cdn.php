@@ -418,12 +418,7 @@ final class Image_CDN {
 			}
 
 			// @TODO: Do the filters need the full HTML or is it enough to pass the tag name, e.g. 'AMP-IMG'?
-			// Generates a canonical HTML representation of the original tag.
-			$tag_maker = new \WP_HTML_Tag_Processor( "<{$p->get_tag()}>" );
-			foreach ( $p->get_attribute_names_with_prefix( '' ) as $name ) {
-				$tag_maker->set_attribute( $name, $p->get_attribute( $name ) );
-			}
-			$tag = $tag_maker->get_updated_html();
+			$tag = $p->get_tag();
 
 			// Default to resize, though fit may be used in certain cases where a dimension cannot be ascertained.
 			$transform = 'resize';
