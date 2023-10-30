@@ -181,6 +181,8 @@ class Initializer {
 				'IDCContainerID'        => static::get_idc_container_id(),
 				'userIsAdmin'           => current_user_can( 'manage_options' ),
 				'isStatsModuleActive'   => $modules->is_active( 'stats' ),
+				'wpcomURL'              => self::get_site()->data->URL,
+				'wpcomURLSuffix'        => ( new Status() )->get_site_suffix( self::get_site()->data->URL ),
 			)
 		);
 
