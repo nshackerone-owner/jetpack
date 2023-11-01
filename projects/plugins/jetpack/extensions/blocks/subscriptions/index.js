@@ -48,6 +48,10 @@ export const settings = {
 	edit,
 	styles: [
 		{
+			name: 'button',
+			label: __( 'Button only', 'jetpack' ),
+		},
+		{
 			name: 'compact',
 			label: __( 'Compact', 'jetpack' ),
 		},
