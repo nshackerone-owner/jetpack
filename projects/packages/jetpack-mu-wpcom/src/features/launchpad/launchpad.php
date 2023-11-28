@@ -242,6 +242,18 @@ function wpcom_launchpad_get_task_list_definitions() {
 				'share_site',
 			),
 		),
+		'site-setup'             => array(
+			'task_ids' => array(
+				'blogname_set',
+				'design_edited',
+				'verify_domain_email',
+				'verify_email',
+				'mobile_app_installed',
+				'setup_professional_email',
+				'post_sharing_enabled',
+				'site_launched',
+			),
+		),
 	);
 
 	$extended_task_list_definitions = apply_filters( 'wpcom_launchpad_extended_task_list_definitions', array() );
