@@ -242,7 +242,7 @@ function wpcom_launchpad_get_task_list_definitions() {
 				'share_site',
 			),
 		),
-		'lagacy-site-setup'      => array(
+		'legacy-site-setup'      => array(
 			'task_ids' => array(
 				'blogname_set',
 				'front_page_updated',
