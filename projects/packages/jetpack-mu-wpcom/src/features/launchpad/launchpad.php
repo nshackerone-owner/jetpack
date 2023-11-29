@@ -245,13 +245,13 @@ function wpcom_launchpad_get_task_list_definitions() {
 		'site-setup'             => array(
 			'task_ids' => array(
 				'blogname_set',
-				'design_edited',
+				'front_page_updated',
 				'verify_domain_email',
 				'verify_email',
 				'mobile_app_installed',
 				'setup_professional_email',
 				'post_sharing_enabled',
-				'site_launched',
+				'legacy_site_launched',
 			),
 		),
 	);
