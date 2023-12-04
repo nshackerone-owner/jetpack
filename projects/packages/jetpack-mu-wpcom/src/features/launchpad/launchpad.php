@@ -1035,3 +1035,33 @@ function wpcom_get_launchpad_checklist_title_by_checklist_slug( $checklist_slug 
 
 	return wpcom_launchpad_checklists()->get_task_list_title( $checklist_slug );
 }
+
+/**
+ * TODO
+ */
+function wpcom_get_launchpad_legacy_site_setup_tasks_status() {
+	if ( ! defined( 'IS_WPCOM' ) || ! IS_WPCOM ) {
+		return array();
+	}
+
+	$blog_tasks = array(
+		'blogname_set',
+		'front_page_updated',
+		'verify_domain_email',
+	);
+
+	$user_tasks = array(
+		'mobile_app_installed',
+	);
+
+	$tasks_status = array();
+	foreach ( $blog_tasks as $task_id ) {
+		$tasks_status[ $task_id ] = wpcom_is_checklist_task_complete( $task_id );
+	}
+
+	foreach ( $user_tasks as $task_id ) {
+		$tasks_status[ $task_id ] = wpcom_is_checklist_task_complete( $task_id );
+	}
+
+	return $tasks_status;
+}
