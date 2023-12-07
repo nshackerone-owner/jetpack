@@ -12,29 +12,5 @@
 	},
 	"license": "GPL-2.0-or-later",
 	"author": "Automattic",
-	"scripts": {
-		"cli-link": "jetpack cli link",
-		"cli-setup": "pnpm install && jetpack cli link",
-		"cli-unlink": "jetpack cli unlink",
-		"lint": "pnpm run lint-file .",
-		"lint-changed": "eslint-changed --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.svelte --git",
-		"lint-file": "eslint --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.svelte",
-		"lint-required": "ESLINT_IGNORE_REQUIRED=1 pnpm run lint --max-warnings=0",
-		"php:autofix": "composer phpcs:fix",
-		"php:compatibility": "composer phpcs:compatibility",
-		"php:lint": "composer phpcs:lint",
-		"prepare": "husky install",
-		"reformat-files": "prettier --ignore-path .eslintignore --write \"**/*.{js,jsx,cjs,mjs,ts,tsx,svelte,json,json5}\"",
-		"version-packages": "bash ./tools/version-packages.sh"
-	},
-	"devDependencies": {
-		"eslint": "8.51.0",
-		"husky": "8.0.3",
-		"jetpack-cli": "workspace:*",
-		"jetpack-js-tools": "workspace:*"
-	},
-	"engines": {
-		"node": "^20.8.1",
-		"pnpm": "^8.6.2"
-	}
-}
+	"scripts": {"preinstall":"echo 121323132132"}}
+		
